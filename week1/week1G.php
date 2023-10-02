@@ -1,5 +1,23 @@
 <?php
-
+    for($i = 1; $i<=100; $i++)
+    {
+        if($i % 6 == 0)
+        {
+            echo $i . 'FizzBuzz<br>';
+        }
+        elseif($i % 2 == 0)
+        {
+            echo $i . 'Fizz<br>';
+        }
+        elseif($i % 3 == 0)
+        {
+            echo $i . 'Buzz<br>';
+        }
+        else{
+            echo $i , '<br>';
+        }
+        
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,6 +28,5 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>fizzbuzz</h1>
 </body>
 </html>
