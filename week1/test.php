@@ -13,25 +13,23 @@
   <a href="https://github.com/frankvoc/SE266.05" class="list-group-item list-group-item-action active">
     <div class="d-flex w-100 justify-content-between">
       <h5 class="mb-1">GitHub Home</h5>
-      <small>10/2/2023</small>
+      <small>10/1/2023</small>
     </div>
     <p class="mb-1">GitHub Repo Home for SE266.05 Web Development using PHP.</small>
   </a>
-  <a href="week1/week1G.php" class="list-group-item list-group-item-action">
+  <a href="week1G.php" class="list-group-item list-group-item-action">
     <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">Week 1 Assignment. FizzBuzz</h5>
+      <h5 class="mb-1">Week 1 Assignment. <i>FizzBuzz</i></h5>
+      <small class="text-muted">10/2/2023</small>
+    <p class="mb-1">Using PHP to solve FizzBuzz, where if the number is a multiple of 2 it will be Fizz. If the number is a multiple of 3 then it will be Buzz. If the number is a multiple of both it will be FizzBuzz.</p>
+    </div>
+  </a>
+  <a href="week1C.php" class="list-group-item list-group-item-action">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">Week 1 Assignment. <i>Basic Arrays</i></h5>
       <small class="text-muted">10/2/2023</small>
     </div>
-    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-    <small class="text-muted">Donec id elit non mi porta.</small>
-  </a>
-  <a href="#" class="list-group-item list-group-item-action">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">List group item heading</h5>
-      <small class="text-muted">3 days ago</small>
-    </div>
-    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-    <small class="text-muted">Donec id elit non mi porta.</small>
+    <p class="mb-1">Using PHP I created a very basic array of animals and printed them to the screen.</p>
   </a>
 </div>
 </body>

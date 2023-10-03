@@ -28,5 +28,6 @@
     <title>Document</title>
 </head>
 <body>
+<h1><a href="test.php">Back to Home</a></h1>
 </body>
 </html>
