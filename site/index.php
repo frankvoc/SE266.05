@@ -57,6 +57,17 @@
     </div>
     <p class="mb-1">Using PHP I created a very basic fucntion canEnterClub and passed a persons age through them. If they are 21 or over they can enter(returns true) or under 21(returns false). Then we passed ages through the function and it retuned Booleans. These were distinguished by <span>&#9989</span> for being able to enter or a  <span>&#10060</span> for not being able to enter.</p>
   </a>
+  <!-- <div class="dropdown show">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Dropdown link
+  </a>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" href="#">Action</a>
+    <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+  </div>
+</div> -->
+
 </div>
 </body>
 </html>
