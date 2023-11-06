@@ -101,6 +101,7 @@
          
          return ($result);
     }
+    
 
     //$teams = getTeams();
     //var_dump($teams);

@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+ if(!isset($_SESSION['users'])){
+     header('Location: restricted.php');
+ }
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,40 +16,61 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <title>NFL Teams</title>
+    <title>Search NFL Teams</title>
 </head>
 <body>
     
-
-
-
     <div class="container">
                 
      <div class="col-sm-12">
         <h1>NFL Teams</h1>
-        <?php if(isset($_SESSION['users'])): ?>
-            <h4>Welcome <?= $_SESSION['users']; ?></h4>
-            <b><a href="search_teams.php">Search Teams</a></b><br>
-            <!-- <b><a href="logout.php">Logout</a></b><br> -->
-        <?php else: ?>
-        <b><a href="login.php">Login</a></b><br>
-        <?php endif; ?>
-        <a href="addTeam.php">Add New Team</a>
-   
+       
+        
+        <a href="view_teams.php">View All Teams</a>
+
     <?php
         
-        include __DIR__ . '/model/model_teams.php';
+        include __DIR__ . '/model/model_team.php';
         include __DIR__ . '/functios.php';
-        
-        if(isset($_POST['deleteTeam'])){
-            $id = filter_input(INPUT_POST, 'teamId');
-            deleteTeam($id);
+
+
+        if (isset($_POST['search'])) {
+            $teamName = filter_input(INPUT_POST, 'team_name');
+            $division = filter_input(INPUT_POST, 'division');
+        }else{
+            $teamName = '';
+            $division = '';
         }
 
-        $teams = getTeams ();
-        
+
+        $teams = searchTeams($teamName, $division);
         
     ?>
+
+    <form method="POST" name="search_teams">
+        <div class="wrapper">
+            <div class="label">
+                <label>Team Name:</label>
+            </div>
+            <div>
+                <input type="text" name="team_name" value="<?= $teamName; ?>" />
+            </div>
+            <div class="label">
+                <label>Divison:</label>
+            </div>
+            <div>
+                <input type="text" name="division" value="<?= $division; ?>" />
+            </div>
+
+            <div>
+                &nbsp;
+            </div>
+            <div>
+                <input type="submit" name="search" value="Search" />
+            </div>
+           
+        </div>
+    </form>
   
     <table class="table table-striped">
             <thead>
@@ -74,7 +105,6 @@
         </table>
         
         <br />
-        <a href="edit_team.php?action=Add">Add New Team</a>
     </div>
     </div>
 </body>
