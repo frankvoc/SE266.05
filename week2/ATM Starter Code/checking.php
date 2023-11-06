@@ -7,10 +7,17 @@ class CheckingAccount extends Account
 	const OVERDRAW_LIMIT = -200;
 
 	public function withdrawal($amount) 
-	{
-		// write code here. Return true if withdrawal goes through; false otherwise
-	} // end withdrawal
+{
+    $newBalance = $this->getBalance() - $amount;
 
+    // Check if the new balance will stay within the overdraft limit
+    if ($newBalance >= self::OVERDRAW_LIMIT) {
+        $this->balance = $newBalance;
+        return true; // Withdrawal successful
+    } else {
+        return false; // Withdrawal failed (exceeds overdraft limit)
+    }
+}
 	//freebie. I am giving you this code.
 	public function getAccountDetails() 
 	{
@@ -19,17 +26,5 @@ class CheckingAccount extends Account
 		
 		return $accountDetails;
 	}
-}
-
-
-// The code below runs everytime this class loads and 
-// should be commented out after testing.
-
-$checking = new CheckingAccount ('C123', 1000, '12-20-2019');
-$checking->withdrawal(200);
-$checking->deposit(500);
-
-echo $checking->getAccountDetails();
-echo $checking->getStartDate();
-    
+}  
 ?>
