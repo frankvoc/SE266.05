@@ -40,19 +40,19 @@ abstract class Account
 	public function getStartDate() 
 	{
 		return $this->startDate;
-	} // end getStartDate
+	} //end getStartDate
 
 	public function getBalance() 
 	{
 		return $this->balance;
-	} // end getBalance
+	} //end getBalance
 
 	public function getAccountId() 
 	{
 		return $this->accountId;
-	} // end getAccountId
+	} //end getAccountId
 
-	// Display AccountID, Balance and StartDate in a nice format
+	//Display AccountID, Balance and StartDate in a <strong> format
 	protected function getAccountDetails()
 	{
 		$accountDetails = "<strong>Account ID:</strong> {$this->getAccountId()}<br>";
@@ -60,8 +60,8 @@ abstract class Account
 		$accountDetails .= "<strong>Start Date:</strong> {$this->getStartDate()}<br>";
 		
 		return $accountDetails;
-	} // end getAccountDetails
+	} //end getAccountDetails
 	
-} // end account
+} //end account
 
 ?>

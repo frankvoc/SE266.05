@@ -2,17 +2,17 @@
 require_once "account.php";
 require_once "checking.php";
 require_once "savings.php";
-session_start(); // Start a session to store account instances
-// Check if the "reset" button is clicked, and destroy the current session
+session_start(); //using sessions to store values
+//reset button logic, reset just sets $ back to zero
 if (isset($_POST["reset"])) {
     session_destroy();
     session_start();
 }
-// Initialize account instances if they don't exist in the session
+//initialize  checking account
 if (!isset($_SESSION['checkingAccount'])) {
     $_SESSION['checkingAccount'] = new CheckingAccount("Checking123", 0, "2023-11-06");
 }
-
+//initalize savings account
 if (!isset($_SESSION['savingsAccount'])) {
     $_SESSION['savingsAccount'] = new SavingsAccount("Savings456", 0, "2023-11-06");
 }
@@ -21,50 +21,56 @@ $savingsAccount = $_SESSION['savingsAccount'];
 $checkingMessage = '';
 $savingsMessage = '';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Handle checking account transactions
+    //start of checking account transactions
     if (isset($_POST["withdrawChecking"])) {
         $amount = (float)$_POST["checkingWithdrawAmount"];
         if ($checkingAccount->withdrawal($amount)) {
-            // Successful withdrawal
+            //successful withdrawal --> message
             $checkingMessage = "Withdrawn $amount from Checking Account.";
         } else {
-            $checkingMessage = "Withdrawal failed. Check your balance or withdrawal amount.";
+            //unsuccessful withdrawl --> message
+            $checkingMessage = "Withdrawal failed. Cannot exceed <strong>$200</strong> overdraft limit";
         }
     } elseif (isset($_POST["depositChecking"])) {
         $amount = (float)$_POST["checkingDepositAmount"];
         if ($amount > 100000) {
-            $checkingMessage = "Deposit limit exceeded. Maximum deposit is 1 million.";
+            $checkingMessage = "Deposit limit exceeded. Maximum deposit is <strong>$100,000</strong>.";
         } else {
             if ($checkingAccount->deposit($amount)) {
-                // Successful deposit
+                //successful deposit --> message
                 $checkingMessage = "Deposited $amount into Checking Account.";
             } else {
                 $checkingMessage = "Deposit failed. Check your deposit amount.";
             }
         }
     }
-    // Handle savings account transactions
+    //END OF CHECKING
+
+    //start of savings account transactions
     if (isset($_POST["withdrawSavings"])) {
         $amount = (float)$_POST["savingsWithdrawAmount"];
         if ($savingsAccount->withdrawal($amount)) {
-            // Successful withdrawal
+            //successful withdrawal --> message
             $savingsMessage = "Withdrawn $amount from Savings Account.";
         } else {
-            $savingsMessage = "Withdrawal failed. Check your balance or withdrawal amount.";
+            //unsuccessful withdrawl --> message
+            $savingsMessage = "Withdrawal failed. Cannot go below <strong>$0</strong>";
         }
     } elseif (isset($_POST["depositSavings"])) {
         $amount = (float)$_POST["savingsDepositAmount"];
         if ($amount > 1000000) {
-            $savingsMessage = "Deposit limit exceeded. Maximum deposit is 1 million.";
+            $savingsMessage = "Deposit limit exceeded. Maximum deposit is <strong>$1,000,000</strong>";
         } else {
             if ($savingsAccount->deposit($amount)) {
-                // Successful deposit
+                //successful deposit --> message
                 $savingsMessage = "Deposited $amount into Savings Account.";
             } else {
+                //unsuccessful deposit --> message
                 $savingsMessage = "Deposit failed. Check your deposit amount.";
             }
         }
     }
+    //END OF SAVINGS
 }
 ?>
 <!DOCTYPE html>
@@ -73,7 +79,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ATM</title>
-    <!-- Add Bootstrap CSS link -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
@@ -131,7 +136,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
     </div>
-    <!-- Add Bootstrap JS and jQuery links -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

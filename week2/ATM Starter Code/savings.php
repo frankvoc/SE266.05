@@ -6,12 +6,12 @@ class SavingsAccount extends Account
 {
 	public function withdrawal($amount) 
 	{
-		// Check if the withdrawal amount is positive and doesn't lead to a negative balance
+		//check if the withdrawal amount is positive and doesn't lead to a negative balance 
 		if ($amount > 0 && $this->getBalance() - $amount >= 0) {
 			$this->balance -= $amount;
-			return true; // Withdrawal successful
+			return true; //withdrawal successful
 		} else {
-			return false; // Withdrawal failed (negative amount or insufficient balance)
+			return false; //withdrawal failed (negative amount or insufficient balance)
 		}
 	}
 		public function getAccountDetails() 

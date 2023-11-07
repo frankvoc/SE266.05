@@ -10,12 +10,12 @@ class CheckingAccount extends Account
 {
     $newBalance = $this->getBalance() - $amount;
 
-    // Check if the new balance will stay within the overdraft limit
+    //check if the new balance will stay within the overdraft limit, same logic as in savings except this allows an overdraft of $200
     if ($newBalance >= self::OVERDRAW_LIMIT) {
         $this->balance = $newBalance;
-        return true; // Withdrawal successful
+        return true; //withdrawal successful
     } else {
-        return false; // Withdrawal failed (exceeds overdraft limit)
+        return false; //withdrawal failed (exceeds overdraft limit)
     }
 }
 	//freebie. I am giving you this code.
