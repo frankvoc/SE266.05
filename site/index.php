@@ -95,7 +95,7 @@
         </div>
         <div id="week3Collapse" class="collapse" aria-labelledby="week3Heading" data-parent="#weekAccordion">
           <div class="list-group">
-            <a href="../week2/ATM%20Starter%20Code/atm_starter.php">
+            <a href="../week2/atm_starter.php">
                 <div class="d-flex w-100 justify-content-between">
                   <h5 class="mb-1">Week 3 Assignment. <i>ATM</i></h5>
                   <small class="text-muted">11/2/2023</small>

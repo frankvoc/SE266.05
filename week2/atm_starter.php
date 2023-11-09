@@ -137,4 +137,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
 </body>
+<footer class="bg-dark text-white text-center py-3" style="position: fixed; bottom: 0; left: 0; right: 0;">
+  <div><a href="../site/index.php">Back to Home</a></div>
 </html>
