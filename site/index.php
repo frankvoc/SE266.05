@@ -19,7 +19,7 @@
       <div class="card">
         <div class="card-header" id="week1Heading">
           <h2 class="mb-0">
-            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#week1Collapse" aria-expanded="true" aria-controls="week1Collapse">
+            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#week1Collapse" aria-expanded="false" aria-controls="week1Collapse">
               Week 1
             </button>
           </h2>
@@ -69,7 +69,7 @@
       <div class="card">
         <div class="card-header" id="week2Heading">
           <h2 class="mb-0">
-            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#week2Collapse" aria-expanded="false" aria-controls="week2Collapse">
+            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#week2Collapse" aria-expanded="true" aria-controls="week2Collapse">
               Week 2
             </button>
           </h2>
@@ -85,9 +85,26 @@
               </a>
           </div>
         </div>
+        <div class="card">
+        <div class="card-header" id="week3Heading">
+          <h2 class="mb-0">
+            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#week3Collapse" aria-expanded="true" aria-controls="week3Collapse">
+              Week 3
+            </button>
+          </h2>
+        </div>
+        <div id="week3Collapse" class="collapse" aria-labelledby="week3Heading" data-parent="#weekAccordion">
+          <div class="list-group">
+            <a href="../week2/ATM%20Starter%20Code/atm_starter.php">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Week 3 Assignment. <i>ATM</i></h5>
+                  <small class="text-muted">11/2/2023</small>
+                  <p class="mb-1">Our assignment for Week 3 was to create a functioning ATM. For this program I used session variables to store the changing ammounts of the checking and savings account</p></a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
   <footer class="bg-dark text-white text-center py-3" style="position: fixed; bottom: 0; left: 0; right: 0;">
     <div>&copy; 2023 FVocatura </div>
   </footer>
