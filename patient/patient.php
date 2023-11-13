@@ -1,11 +1,13 @@
 <?php
+  include __DIR__ . '/model/model_patient.php';
+  include __DIR__ . '/functions.php';
 //checks if the request is a "POST" so it confirms we have a submitted form
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //then retrieves the form data
     $firstName = $_POST["firstName"];
     $lastName = $_POST["lastName"];
     $married = $_POST["married"];
-    $birthDate = $_POST["birthDate"];
+    $birthDate = $_POST["birthDate"];   
     $height = floatval($_POST["height"]);
     $weight = floatval($_POST["weight"]);
 
