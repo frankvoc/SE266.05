@@ -40,6 +40,8 @@
                     <th>Last Name</th>
                     <th>Married</th>
                     <th>Birth Date</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
             <tbody>

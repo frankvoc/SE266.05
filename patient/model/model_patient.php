@@ -40,6 +40,21 @@
         
         return ($results);
     }
+    function deleteTeam ($id) {
+        global $db;
+        
+        $results = "Data was not deleted";
+        $stmt = $db->prepare("DELETE FROM patients WHERE id=:id");
+        
+        $stmt->bindValue(':id', $id);
+            
+        if ($stmt->execute() && $stmt->rowCount() > 0) {
+            $results = 'Data Deleted';
+        }
+        
+        return ($results);
+    }
+
    
     function searchTeams ($team, $division) {
         global $db;
