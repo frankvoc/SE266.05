@@ -103,6 +103,24 @@
             </div>
           </div>
         </div>
+        <div class="card">
+        <div class="card-header" id="week4Heading">
+          <h2 class="mb-0">
+            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#week4Collapse" aria-expanded="true" aria-controls="week4Collapse">
+              Week 4
+            </button>
+          </h2>
+        </div>
+        <div id="week4collapse" class="collapse" aria-labelledby="week4Heading" data-parent="#weekAccordion">
+          <div class="list-group">
+            <a href="../patient/view_patients.php">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Week 4 Assignment. <i>ATM</i></h5>
+                  <small class="text-muted">11/2/2023</small>
+                  <p class="mb-1">Our assignment for Week 3 was to create a functioning ATM. For this program I used session variables to store the changing ammounts of the checking and savings account</p></a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   <footer class="bg-dark text-white text-center py-3" style="position: fixed; bottom: 0; left: 0; right: 0;">
