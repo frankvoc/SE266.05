@@ -54,7 +54,7 @@
     <div class="form-group">
       <label class="control-label col-sm-2" for="pwd">Birthdate:</label>
       <div class="col-sm-10">          
-        <input type="text" class="form-control" id="birthDate" placeholder="Enter Birtdate... ex: 2019-11-26" name="birthDate">
+        <input type="date" class="form-control" id="birthDate" placeholder="Enter Birtdate... ex: 2019-11-26" name="birthDate">
       </div>
     </div>
     
