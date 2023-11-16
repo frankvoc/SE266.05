@@ -8,6 +8,7 @@
     $lastName = filter_input(INPUT_POST, 'lastName');
     $married = filter_input(INPUT_POST, 'married');
     $birthDate = filter_input(INPUT_POST, 'birthDate');
+    $birthDate = date('Y-m-d H:i:s');
     $result = addPateint ($firstName, $lastName, $married, $birthDate);    
   }
 ?>
