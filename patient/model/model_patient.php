@@ -2,7 +2,7 @@
 
     include (__DIR__ . '/db.php');
     
-    // Get listing of all teams
+    //Get listing of all teams
     function getPatients () {
         global $db;
         
@@ -40,7 +40,26 @@
         
         return ($results);
     }
-    function deleteTeam ($id) {
+    function updatePatient ($id, $firstName, $lastName, $married, $birthDate) {
+        global $db;
+
+        $results = "";
+        $sql = "UPDATE patients SET patientFirstName = :firstName, patientLastName = :lastName, patientMarried = :married, patientBirthDate = :birthDate WHERE id=:id ";
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':id', $id);
+        $stmt->bindValue(':firstName', $firstName);
+        $stmt->bindValue(':lastName', $lastName);
+        $stmt->bindValue(':married', $married);
+        $stmt->bindValue(':birthDate', $birthDate);
+      
+        if ($stmt->execute() && $stmt->rowCount() > 0) {
+            $results = 'Data Updated';
+        }
+        
+        return ($results);
+    }
+    function deletePatient ($id) {
         global $db;
         
         $results = "Data was not deleted";
@@ -54,36 +73,52 @@
         
         return ($results);
     }
+    function getPatient($id){
+
+        global $db;
+        
+        $result = [];
+        $stmt = $db->prepare("SELECT * FROM patients WHERE id=:id");
+        $stmt->bindValue(':id', $id);
+       
+        if ( $stmt->execute() && $stmt->rowCount() > 0 ) {
+             $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                        
+         }
+         
+         return ($result);
+    }
+    
 
    
-    function searchTeams ($team, $division) {
-        global $db;
-        $binds = array();
+    // function searchTeams ($team, $division) {
+    //     global $db;
+    //     $binds = array();
     
-        $sql =  "SELECT * FROM  teams WHERE 0=0";
+    //     $sql =  "SELECT * FROM  teams WHERE 0=0";
 
-        if ($team != "") {
-            $sql .= " AND teamName LIKE :team";
-            $binds['team'] = '%'.$team.'%';
-        }
+    //     if ($team != "") {
+    //         $sql .= " AND teamName LIKE :team";
+    //         $binds['team'] = '%'.$team.'%';
+    //     }
     
-        if ($division != "") {
-            $sql .= " AND division LIKE :division";
-            $binds['division'] = '%'.$division.'%';
-        }
+    //     if ($division != "") {
+    //         $sql .= " AND division LIKE :division";
+    //         $binds['division'] = '%'.$division.'%';
+    //     }
     
-        $sql .= " ORDER BY teamName";
+    //     $sql .= " ORDER BY teamName";
 
-        $results = array();
+    //     $results = array();
 
-        $stmt = $db->prepare($sql);
+    //     $stmt = $db->prepare($sql);
 
-        if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
-            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        }
+    //     if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
+    //         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    //     }
              
-        return ($results);
-    }
+    //     return ($results);
+    // }
     function login($user, $pass){
         global $db;
         

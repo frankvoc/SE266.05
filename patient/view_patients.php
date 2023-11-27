@@ -18,16 +18,16 @@
             <b><a href="search_teams.php">Search Patients</a></b><br>
             <!-- <b><a href="logout.php">Logout</a></b><br> -->
         <?php else: ?>
-        <b><a href="login.php">Login</a></b><br>
+        <!-- <b><a href="login.php">Login</a></b><br> -->
         <?php endif; ?>
         <a href="addPatient.php">Add New Patient</a>
     <?php
         include __DIR__ . '/model/model_patient.php';
         include __DIR__ . '/functions.php';
         
-        if(isset($_POST['deleteTeam'])){
-            $id = filter_input(INPUT_POST, 'teamId');
-            deleteTeam($id);
+        if(isset($_POST['deletePatient'])){
+            $id = filter_input(INPUT_POST, 'id');
+            deletePatient($id);
         }
 
         $patients = getPatients(); 
@@ -40,21 +40,27 @@
                     <th>Last Name</th>
                     <th>Married</th>
                     <th>Birth Date</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
+                    <th>Edit/Update</th>
                 </tr>
             </thead>
             <tbody>
             <?php foreach ($patients as $p):                 
             ?>
-                <tr>
-                    <td><?= $p['id']; ?></td> 
+                  <tr>
+                    <td>
+                        <!-- FORM FOR DELETE FUNCTIONALITY -->
+                        <form action='view_patients.php' method='post'>
+                            <input type="hidden" name="id" value="<?= $p['id'];?>"/>
+                            <input class="" type="submit" name="deletePatient" value="Delete" />
+                            <?= $p['id']; ?>
+                        </form>
+                    </td>
                     <td><?= $p['patientFirstName']; ?></td>
-                    <td><?= $p['patientLastName']; ?></td> 
-                    <td><?= $p['patientMarried']; ?></td> 
+                    <td><?= $p['patientLastName']; ?></td>
+                    <td><?= $p['patientMarried']; ?></td>  
                     <td><?= $p['patientBirthDate']; ?></td> 
                     <!-- LINK FOR UPDATE FUNCTIONALITY -> Look at how we are passing in our ID using PHP! -->
-                    <!-- <td><a href="edit_team.php?action=Update&teamId=<?= $t['id']; ?>">Edit</a></td>         -->
+                    <td><a href="edit_patient.php?action=Update&Id=<?= $p['id']; ?>">Edit</a></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
