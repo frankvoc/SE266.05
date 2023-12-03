@@ -26,7 +26,7 @@
 
         $stmt = $db->prepare("INSERT INTO patients SET patientFirstName = :firstName, patientLastName = :lastName, patientMarried = :married, patientBirthDate = :birthDate");
 
-        $binds = array(
+        $results = array(
             ":firstName" => $firstName,
             ":lastName" => $lastName,
             ":married" => $married,
@@ -34,7 +34,7 @@
         );
         
         
-        if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
+        if ($stmt->execute($results) && $stmt->rowCount() > 0) {
             $results = 'Data Added';
         }
         
@@ -88,38 +88,33 @@
          
          return ($result);
     }
+    function searchPatients($firstName, $lastName, $marriedStatus) {
+        global $db;
     
-
-   
-    // function searchTeams ($team, $division) {
-    //     global $db;
-    //     $binds = array();
+        $sql = "SELECT * FROM patients WHERE 1=1";
     
-    //     $sql =  "SELECT * FROM  teams WHERE 0=0";
-
-    //     if ($team != "") {
-    //         $sql .= " AND teamName LIKE :team";
-    //         $binds['team'] = '%'.$team.'%';
-    //     }
+        $results = [];
     
-    //     if ($division != "") {
-    //         $sql .= " AND division LIKE :division";
-    //         $binds['division'] = '%'.$division.'%';
-    //     }
-    
-    //     $sql .= " ORDER BY teamName";
-
-    //     $results = array();
-
-    //     $stmt = $db->prepare($sql);
-
-    //     if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
-    //         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    //     }
-             
-    //     return ($results);
-    // }
-    function login($user, $pass){
+        if (!empty($firstName)) {
+            $sql .= " AND patientFirstName LIKE :firstName";//building the query as we go
+            $results['firstName'] = '%' . $firstName . '%';//'%' = :LIKE
+        }
+        if (!empty($lastName)) {
+            $sql .= " AND patientLastName LIKE :lastName";
+            $results['lastName'] = '%' . $lastName . '%';
+        }
+        if ($marriedStatus !== '') {
+            $sql .= " AND patientMarried = :marriedStatus";
+            $results['marriedStatus'] = $marriedStatus;
+        }
+        $stmt = $db->prepare($sql);//our sql statment query is now finished. It was dynamically built above
+        if ($stmt->execute($results) && $stmt->rowCount() > 0) {
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+        return [];
+    }
+  
+    function login($user, $pass){//not functional.
         global $db;
         
         $result = [];

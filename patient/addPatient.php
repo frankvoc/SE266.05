@@ -12,8 +12,6 @@
     $result = addPateint ($firstName, $lastName, $married, $birthDate);    
   }
 ?>
-    
-
 <html lang="en">
 <head>
   <title>Add Patients</title>
@@ -23,11 +21,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
-
 <body>
 <div class="container">
-
-
   <h1>Add Patient</h1>
   <div class="col-sm-offset-1 col-sm-10"><p><a href="./view_patients.php">View Patients</a></p></div>
   <form class="form-horizontal" action="addPatient.php" method="post">
@@ -57,7 +52,6 @@
         <input type="date" class="form-control" id="birthDate" placeholder="Enter Birtdate... ex: 2019-11-26" name="birthDate">
       </div>
     </div>
-    
     <div class="form-group">        
       <div class="col-sm-offset-2 col-sm-10">
         <button type="submit" class="btn btn-default">Add Patient</button>

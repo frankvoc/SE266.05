@@ -7,8 +7,6 @@
 </head>
 <div class="col-sm-offset-1 col-sm-10"><p><a href="./view_patients.php">View Patients</a></p></div>
 <body>
-    
-
 <?php 
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
@@ -22,7 +20,6 @@
     if(isset($_GET['action'])){
         $action = filter_input(INPUT_GET, 'action');
         $id = filter_input(INPUT_GET, 'Id');
-
         if($action == "Update"){
             $patient = getPatient($id);
             $firstName = $patient["patientFirstName"];
@@ -36,8 +33,6 @@
             $married="";
             $birthDate="";
         }
-
-        //UPDATE TEAM WAS SUBMITTED IN FORM -> GRAB SUBMITTED VALUES AND PASS TO THE updateTeam() METHOD!
     }elseif (isset($_POST['Update_patient'])){
         $action = filter_input(INPUT_POST, 'action');
         $id = filter_input(INPUT_POST, 'id');
@@ -45,11 +40,8 @@
         $lastName = filter_input(INPUT_POST, 'lastName');
         $married = filter_input(INPUT_POST, 'married');
         $birthDate = filter_input(INPUT_POST, 'birthDate');
-
         updatePatient($id, $firstName, $lastName, $married, $birthDate);
         header('Location: view_patients.php');
-
-        //ADD TEAM WAS SUBMITTED IN FORM -> GRAB SUBMITTED VALUES AND PASS TO THE addTeam() METHOD!
     }elseif (isset($_POST['Add_patient'])){
         $action = filter_input(INPUT_POST, 'action');
         $firstName = filter_input(INPUT_POST, 'firstName');
@@ -60,6 +52,18 @@
         
         addPatient($firstName, $lastName, $married, $birthDate);
         header('Location: view_patients.php');
+    }
+    if ($action == "Update") {
+        $patient = getPatient($id);
+        $firstName = $patient["patientFirstName"];
+        $lastName = $patient['patientLastName'];
+        $married = $patient['patientMarried'];
+        $birthDate = $patient['patientBirthDate']; // Ensure correct column name is used
+    } else {
+        $firstName = "";
+        $lastName = "";
+        $married = ""; // Set default value for married status if needed
+        $birthDate = "";
     }
 
 ?>
@@ -81,13 +85,9 @@
         .error {color: red;}
         div {margin-top: 5px;}
     </style>
-
-    <!-- ADD TEAM FORM -->
     <h2><?= $action; ?> Patient</h2>
+    <form name="patient" method="post" action="edit_patient.php">
 
-    <form name="team" method="post" action="edit_patient.php">
-        
-        <!--FORM-->
         <div class="wrapper">
             <input type="hidden" name="id" value="<?= $id; ?>" />
             <div class="label">
@@ -106,21 +106,19 @@
                 <label>Married:</label>
             </div>
             <div>
-                <input type="radio" name="married" value="<?= $married; ?>" />
-                <input type="radio" name="married" value="<?= $married; ?>" />
+                <input type="radio" name="married" value="1" <?= $married == 1 ? 'checked' : '' ?> /> Yes
+                <input type="radio" name="married" value="0" <?= $married == 0 ? 'checked' : '' ?> /> No
             </div>
             <div class="label">
                 <label>Birth Date:</label>
             </div>
             <div>
-                <input type="date" name="birthDate" value="<?= $patientBirthDate; ?>" />
+                <input type="date" name="birthDate" value="<?= $birthDate ?>" />
             </div>
-
             <div>
                 &nbsp;
             </div>
             <div>
-                <!-- WE CAN USE OUR 'ACTION' VALUE FROM THE GET RESULT TO MANIPULATE THE FORM! -->
                 <input type="submit" name="<?= $action; ?>_patient" value="<?= $action; ?> Patient Information" />
             </div>
            
